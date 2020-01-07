@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_spy",
+	"name": "Cloudsales_tables",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Cloudsales_connection",

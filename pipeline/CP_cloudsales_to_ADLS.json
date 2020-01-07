@@ -60,7 +60,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SourceDataset_spy",
+									"referenceName": "Cloudsales_tables",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_schema": "@item().source.schema",
