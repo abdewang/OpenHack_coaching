@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Cloudsales_connection'"
 		},
+		"Movies_DataSource_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Movies_DataSource'"
+		},
 		"Source_cloudstreaming_tables_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Source_cloudstreaming_tables'"
@@ -55,6 +59,9 @@
 					},
 					"Cloudsales_connection_connectionString": {
 						"value": "[parameters('Cloudsales_connection_connectionString')]"
+					},
+					"Movies_DataSource_connectionString": {
+						"value": "[parameters('Movies_DataSource_connectionString')]"
 					},
 					"Source_cloudstreaming_tables_connectionString": {
 						"value": "[parameters('Source_cloudstreaming_tables_connectionString')]"

@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Cloudsales_connection'"
 		},
+		"Movies_DataSource_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Movies_DataSource'"
+		},
 		"Source_cloudstreaming_tables_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Source_cloudstreaming_tables'"
@@ -55,6 +59,20 @@
 				"type": "AzureSqlDatabase",
 				"typeProperties": {
 					"connectionString": "[parameters('Cloudsales_connection_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Movies_DataSource')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "All data from the movies collection in Cosmos DB has been extracted and stored in the enterprise data lake",
+				"annotations": [],
+				"type": "CosmosDb",
+				"typeProperties": {
+					"connectionString": "[parameters('Movies_DataSource_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -152,6 +170,57 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_mo8')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_sales_AzureDataLakeStorage_Linked_services",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "MoviesDatasets"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Movies_collection",
+						"folderPath": "collection",
+						"fileSystem": "movies"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_sales_AzureDataLakeStorage_Linked_services')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_mo8')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Movies_DataSource",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "MoviesDatasets"
+				},
+				"annotations": [],
+				"type": "CosmosDbSqlApiCollection",
+				"schema": [],
+				"typeProperties": {
+					"collectionName": "movies"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Movies_DataSource')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/cloud_streaming_tables_destination')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -227,6 +296,92 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Source_cloudstreaming_tables')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CP_Movies_to_ADLS')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "All data from the movies collection in Cosmos DB has been extracted and stored in the enterprise data lake",
+				"activities": [
+					{
+						"name": "Copy_mo8",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "movies"
+							},
+							{
+								"name": "Destination",
+								"value": "movies/collection/Movies_collection"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "CosmosDbSqlApiSource",
+								"preferredRegions": []
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings",
+									"maxConcurrentConnections": 5
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings",
+									"quoteAllText": true,
+									"filePattern": "arrayOfObjects"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$"
+										},
+										"sink": {
+											"path": "$"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_mo8",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_mo8",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "MoviesData"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_mo8')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_mo8')]"
 			]
 		},
 		{
