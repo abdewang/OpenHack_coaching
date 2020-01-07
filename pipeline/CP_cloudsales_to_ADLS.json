@@ -70,7 +70,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DestinationDataset_spy",
+									"referenceName": "Cloud_sales_tables_destination",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_fileName": "@item().destination.fileName"

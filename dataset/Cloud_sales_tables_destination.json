@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_spy",
+	"name": "Cloud_sales_tables_destination",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Cloud_sales_AzureDataLakeStorage_Linked_services",
