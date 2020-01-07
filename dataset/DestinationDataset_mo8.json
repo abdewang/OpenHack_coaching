@@ -5,6 +5,9 @@
 			"referenceName": "Cloud_sales_AzureDataLakeStorage_Linked_services",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "MoviesDatasets"
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
