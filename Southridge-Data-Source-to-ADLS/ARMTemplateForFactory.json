@@ -253,6 +253,9 @@
 						]
 					}
 				},
+				"folder": {
+					"name": "CloudSalesData"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -460,6 +463,9 @@
 						]
 					}
 				},
+				"folder": {
+					"name": "CloudStreamingData"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -480,6 +486,9 @@
 					"cw_fileName": {
 						"type": "String"
 					}
+				},
+				"folder": {
+					"name": "CloudSalesDatasets"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -521,6 +530,9 @@
 						"type": "String"
 					}
 				},
+				"folder": {
+					"name": "CloudSalesDatasets"
+				},
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [],
@@ -552,6 +564,9 @@
 					"cw_fileName": {
 						"type": "String"
 					}
+				},
+				"folder": {
+					"name": "CloudStreamingDatasets"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -592,6 +607,9 @@
 					"cw_table": {
 						"type": "String"
 					}
+				},
+				"folder": {
+					"name": "CloudStreamingDatasets"
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
