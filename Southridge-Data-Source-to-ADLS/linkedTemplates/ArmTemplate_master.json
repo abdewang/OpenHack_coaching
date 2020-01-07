@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Cloudsales_connection'"
 		},
+		"Source_cloudstreaming_tables_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Source_cloudstreaming_tables'"
+		},
 		"Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://southridgedatalake.dfs.core.windows.net"
@@ -51,6 +55,9 @@
 					},
 					"Cloudsales_connection_connectionString": {
 						"value": "[parameters('Cloudsales_connection_connectionString')]"
+					},
+					"Source_cloudstreaming_tables_connectionString": {
+						"value": "[parameters('Source_cloudstreaming_tables_connectionString')]"
 					},
 					"Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url": {
 						"value": "[parameters('Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url')]"

@@ -11,6 +11,9 @@
 		"Cloudsales_connection_connectionString": {
 			"value": ""
 		},
+		"Source_cloudstreaming_tables_connectionString": {
+			"value": ""
+		},
 		"Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url": {
 			"value": "https://southridgedatalake.dfs.core.windows.net"
 		},
