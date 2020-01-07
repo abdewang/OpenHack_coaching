@@ -59,7 +59,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SourceDataset_6m3",
+									"referenceName": "cloudstreaming_tables",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_schema": "@item().source.schema",
