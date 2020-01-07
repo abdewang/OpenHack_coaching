@@ -69,7 +69,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DestinationDataset_6m3",
+									"referenceName": "cloud_streaming_tables_destination",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_fileName": "@item().destination.fileName"

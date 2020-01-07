@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_6m3",
+	"name": "cloud_streaming_tables_destination",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Cloud_sales_AzureDataLakeStorage_Linked_services",
