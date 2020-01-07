@@ -1,0 +1,20 @@
+{
+	"name": "DestinationDataset_mo8",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Cloud_sales_AzureDataLakeStorage_Linked_services",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Movies_collection",
+				"folderPath": "collection",
+				"fileSystem": "movies"
+			}
+		},
+		"schema": []
+	}
+}
