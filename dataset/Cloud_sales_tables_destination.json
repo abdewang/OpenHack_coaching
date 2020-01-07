@@ -10,6 +10,9 @@
 				"type": "String"
 			}
 		},
+		"folder": {
+			"name": "CloudSalesDatasets"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
