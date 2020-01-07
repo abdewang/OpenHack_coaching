@@ -221,6 +221,9 @@
 				]
 			}
 		},
+		"folder": {
+			"name": "CloudSalesData"
+		},
 		"annotations": []
 	}
 }
