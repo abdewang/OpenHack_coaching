@@ -196,6 +196,9 @@
 				]
 			}
 		},
+		"folder": {
+			"name": "CloudStreamingData"
+		},
 		"annotations": []
 	}
 }
