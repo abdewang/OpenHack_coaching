@@ -1,7 +1,0 @@
-{
-	"name": "vanarsdel-integration-runtime",
-	"properties": {
-		"type": "SelfHosted",
-		"description": "All data from the dbo schema of the VanArsdel, Ltd. database has been extracted and stored in the enterprise data lake"
-	}
-}
