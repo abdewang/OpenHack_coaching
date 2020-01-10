@@ -1,0 +1,23 @@
+{
+	"name": "DestinationDataset_zoi",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Cloud_sales_AzureDataLakeStorage_Linked_services",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Rentals",
+				"fileSystem": "fourthcoffee"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
