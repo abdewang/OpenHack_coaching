@@ -10,6 +10,9 @@
 				"type": "String"
 			}
 		},
+		"folder": {
+			"name": "VanArsdelLtd"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
