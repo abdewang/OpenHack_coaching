@@ -11,6 +11,9 @@
 		"Cloudsales_connection_connectionString": {
 			"value": ""
 		},
+		"FileServer1_password": {
+			"value": ""
+		},
 		"Movies_DataSource_connectionString": {
 			"value": ""
 		},
@@ -22,6 +25,12 @@
 		},
 		"Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url": {
 			"value": "https://southridgedatalake.dfs.core.windows.net"
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"value": "C:\\Rentals"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"value": "openhackadmin"
 		},
 		"containerUri": {
 			"value": ""

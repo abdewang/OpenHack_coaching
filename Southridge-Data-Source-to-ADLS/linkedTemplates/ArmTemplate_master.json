@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Cloudsales_connection'"
 		},
+		"FileServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer1'"
+		},
 		"Movies_DataSource_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Movies_DataSource'"
@@ -30,6 +34,14 @@
 		"Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://southridgedatalake.dfs.core.windows.net"
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Rentals"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "openhackadmin"
 		},
 		"containerUri": {
 			"type": "string",
@@ -70,15 +82,44 @@
 					"Source_cloudstreaming_tables_connectionString": {
 						"value": "[parameters('Source_cloudstreaming_tables_connectionString')]"
 					},
+					"FileServer1_password": {
+						"value": "[parameters('FileServer1_password')]"
+					},
 					"VanArsdelLtd_linked_service_connectionString": {
 						"value": "[parameters('VanArsdelLtd_linked_service_connectionString')]"
 					},
 					"Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url": {
 						"value": "[parameters('Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url')]"
+					},
+					"FileServer1_properties_typeProperties_host": {
+						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
+					},
+					"FileServer1_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_0')]"
+			]
 		}
 	]
 }
