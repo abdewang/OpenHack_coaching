@@ -1,0 +1,17 @@
+{
+	"name": "VanArsdelLtd_linked_service",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "All data from the dbo schema of the VanArsdel, Ltd. database has been extracted and stored in the enterprise data lake",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=VanArsdelLtd;initial catalog=OnPremrentals;user id=southridge",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjNmViZDI4My05ZmExLTQyMDgtYjc3NS1iMzU1ZTJjZGZlYTQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "VanArsdelLtd-linked-service",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
