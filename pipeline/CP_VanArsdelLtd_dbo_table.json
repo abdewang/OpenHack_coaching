@@ -1,0 +1,178 @@
+{
+	"name": "CP_VanArsdelLtd_dbo_table",
+	"properties": {
+		"description": "All data from the dbo schema of the VanArsdel, Ltd. database has been extracted and stored in the enterprise data lake",
+		"activities": [
+			{
+				"name": "ForEach_cz6",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_cz6",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "@{item().source.schema}.@{item().source.table}"
+								},
+								{
+									"name": "Destination",
+									"value": "vanarsdelltd/OnPremRentals/dbo/@{item().destination.fileName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_cz6",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_schema": "@item().source.schema",
+										"cw_table": "@item().source.table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_cz6",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Actors"
+						},
+						"destination": {
+							"fileName": "dboActors.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Customers"
+						},
+						"destination": {
+							"fileName": "dboCustomers.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "MovieActors"
+						},
+						"destination": {
+							"fileName": "dboMovieActors.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Movies"
+						},
+						"destination": {
+							"fileName": "dboMovies.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "OnlineMovieMappings"
+						},
+						"destination": {
+							"fileName": "dboOnlineMovieMappings.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "dbo",
+							"table": "Transactions"
+						},
+						"destination": {
+							"fileName": "dboTransactions.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Hidden",
+							"table": "Customers"
+						},
+						"destination": {
+							"fileName": "HiddenCustomers.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Hidden",
+							"table": "CustomerUpdates"
+						},
+						"destination": {
+							"fileName": "HiddenCustomerUpdates.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Hidden",
+							"table": "Transactions"
+						},
+						"destination": {
+							"fileName": "HiddenTransactions.txt"
+						}
+					},
+					{
+						"source": {
+							"schema": "Hidden",
+							"table": "TransactionUpdates"
+						},
+						"destination": {
+							"fileName": "HiddenTransactionUpdates.txt"
+						}
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}
