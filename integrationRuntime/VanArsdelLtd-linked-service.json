@@ -1,0 +1,6 @@
+{
+	"name": "VanArsdelLtd-linked-service",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
