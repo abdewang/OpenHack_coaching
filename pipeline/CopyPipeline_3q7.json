@@ -151,6 +151,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "Copy from CloudSales to DW"
+		},
 		"annotations": []
 	}
 }

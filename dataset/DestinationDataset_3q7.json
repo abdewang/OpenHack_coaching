@@ -5,6 +5,9 @@
 			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "Cloudsales to DW"
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
