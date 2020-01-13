@@ -7,6 +7,18 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "Southridge-Data-Source-to-ADLS"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics1'"
+		},
 		"Cloud_sales_AzureDataLakeStorage_Linked_services_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'Cloud_sales_AzureDataLakeStorage_Linked_services'"
@@ -23,31 +35,54 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Source_cloudstreaming_tables'"
 		},
-		"FileServer1_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'FileServer1'"
-		},
-		"VanArsdelLtd_linked_service_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'VanArsdelLtd_linked_service'"
-		},
 		"Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://southridgedatalake.dfs.core.windows.net"
-		},
-		"FileServer1_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "C:\\Rentals"
-		},
-		"FileServer1_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "openhackadmin"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSynapseAnalytics1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSynapseAnalytics1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Cloud_sales_AzureDataLakeStorage_Linked_services')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -227,6 +262,85 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_3q7')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Cloudsales to DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "AddressID",
+						"type": "uniqueidentifier",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "CreatedDate",
+						"type": "date",
+						"precision": 10,
+						"scale": 0
+					},
+					{
+						"name": "UpdatedDate",
+						"type": "date",
+						"precision": 10,
+						"scale": 0
+					},
+					{
+						"name": "CustomerID",
+						"type": "uniqueidentifier",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "AddressLine1",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "AddressLine2",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "City",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "State",
+						"type": "char",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "ZipCode",
+						"type": "char",
+						"precision": 0,
+						"scale": 0
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CloudSalesAddresses"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_cz6')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -326,6 +440,38 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_3q7')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_sales_AzureDataLakeStorage_Linked_services",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Cloudsales to DW"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "dboAddresses.txt",
+						"folderPath": "dbo",
+						"fileSystem": "cloudsales"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_sales_AzureDataLakeStorage_Linked_services')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_mo8')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -386,409 +532,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Cloud_sales_AzureDataLakeStorage_Linked_services')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/cloudstreaming_tables')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Source_cloudstreaming_tables",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"cw_schema": {
-						"type": "String"
-					},
-					"cw_table": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "CloudStreamingDatasets"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": {
-						"value": "@dataset().cw_schema",
-						"type": "Expression"
-					},
-					"table": {
-						"value": "@dataset().cw_table",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Source_cloudstreaming_tables')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FileServer1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "FileServer",
-				"typeProperties": {
-					"host": "[parameters('FileServer1_properties_typeProperties_host')]",
-					"userId": "[parameters('FileServer1_properties_typeProperties_userId')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('FileServer1_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntime2",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/VanArsdelLtd_linked_service')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "All data from the dbo schema of the VanArsdel, Ltd. database has been extracted and stored in the enterprise data lake",
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('VanArsdelLtd_linked_service_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "VanArsdelLtd-linked-service",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/VanArsdelLtd-linked-service')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CP_Movies_to_ADLS')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "All data from the movies collection in Cosmos DB has been extracted and stored in the enterprise data lake",
-				"activities": [
-					{
-						"name": "Copy_mo8",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Source",
-								"value": "movies"
-							},
-							{
-								"name": "Destination",
-								"value": "movies/collection/Movies_collection"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "CosmosDbSqlApiSource",
-								"preferredRegions": []
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings",
-									"maxConcurrentConnections": 5
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings",
-									"quoteAllText": true,
-									"filePattern": "arrayOfObjects"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$"
-										},
-										"sink": {
-											"path": "$"
-										}
-									}
-								]
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataset_mo8",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationDataset_mo8",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"folder": {
-					"name": "MoviesData"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_mo8')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_mo8')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CP_cloudsales_to_ADLS')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Coping cloud sales tables to Azure Data Lake storage ",
-				"activities": [
-					{
-						"name": "ForEach_spy",
-						"type": "ForEach",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@pipeline().parameters.cw_items",
-								"type": "Expression"
-							},
-							"activities": [
-								{
-									"name": "Copy_spy",
-									"type": "Copy",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [
-										{
-											"name": "Source",
-											"value": "@{item().source.schema}.@{item().source.table}"
-										},
-										{
-											"name": "Destination",
-											"value": "cloudsales/dbo/@{item().destination.fileName}"
-										}
-									],
-									"typeProperties": {
-										"source": {
-											"type": "AzureSqlSource",
-											"queryTimeout": {
-												"value": "@item().copySource.queryTimeout",
-												"type": "Expression"
-											}
-										},
-										"sink": {
-											"type": "DelimitedTextSink",
-											"storeSettings": {
-												"type": "AzureBlobFSWriteSettings",
-												"maxConcurrentConnections": 5
-											},
-											"formatSettings": {
-												"type": "DelimitedTextWriteSettings",
-												"quoteAllText": true,
-												"fileExtension": ".txt"
-											}
-										},
-										"enableStaging": false,
-										"enableSkipIncompatibleRow": false
-									},
-									"inputs": [
-										{
-											"referenceName": "Cloudsales_tables",
-											"type": "DatasetReference",
-											"parameters": {
-												"cw_schema": "@item().source.schema",
-												"cw_table": "@item().source.table"
-											}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "Cloud_sales_tables_destination",
-											"type": "DatasetReference",
-											"parameters": {
-												"cw_fileName": "@item().destination.fileName"
-											}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"parameters": {
-					"cw_items": {
-						"type": "Array",
-						"defaultValue": [
-							{
-								"source": {
-									"schema": "dbo",
-									"table": "Addresses"
-								},
-								"destination": {
-									"fileName": "dboAddresses.txt"
-								},
-								"copySource": {
-									"queryTimeout": "00:30:00"
-								}
-							},
-							{
-								"source": {
-									"schema": "dbo",
-									"table": "Customers"
-								},
-								"destination": {
-									"fileName": "dboCustomers.txt"
-								},
-								"copySource": {
-									"queryTimeout": null
-								}
-							},
-							{
-								"source": {
-									"schema": "dbo",
-									"table": "OrderDetails"
-								},
-								"destination": {
-									"fileName": "dboOrderDetails.txt"
-								},
-								"copySource": {
-									"queryTimeout": null
-								}
-							},
-							{
-								"source": {
-									"schema": "dbo",
-									"table": "Orders"
-								},
-								"destination": {
-									"fileName": "dboOrders.txt"
-								},
-								"copySource": {
-									"queryTimeout": null
-								}
-							},
-							{
-								"source": {
-									"schema": "Hidden",
-									"table": "Addresses"
-								},
-								"destination": {
-									"fileName": "HiddenAddresses.txt"
-								},
-								"copySource": {
-									"queryTimeout": null
-								}
-							},
-							{
-								"source": {
-									"schema": "Hidden",
-									"table": "AddressUpdates"
-								},
-								"destination": {
-									"fileName": "HiddenAddressUpdates.txt"
-								},
-								"copySource": {
-									"queryTimeout": null
-								}
-							},
-							{
-								"source": {
-									"schema": "Hidden",
-									"table": "Customers"
-								},
-								"destination": {
-									"fileName": "HiddenCustomers.txt"
-								},
-								"copySource": {
-									"queryTimeout": null
-								}
-							},
-							{
-								"source": {
-									"schema": "Hidden",
-									"table": "CustomerUpdates"
-								},
-								"destination": {
-									"fileName": "HiddenCustomerUpdates.txt"
-								},
-								"copySource": {
-									"queryTimeout": null
-								}
-							},
-							{
-								"source": {
-									"schema": "Hidden",
-									"table": "OrderDetails"
-								},
-								"destination": {
-									"fileName": "HiddenOrderDetails.txt"
-								},
-								"copySource": {
-									"queryTimeout": null
-								}
-							},
-							{
-								"source": {
-									"schema": "Hidden",
-									"table": "Orders"
-								},
-								"destination": {
-									"fileName": "HiddenOrders.txt"
-								},
-								"copySource": {
-									"queryTimeout": null
-								}
-							},
-							{
-								"source": {
-									"schema": "Hidden",
-									"table": "OrderUpdates"
-								},
-								"destination": {
-									"fileName": "HiddenOrderUpdates.txt"
-								},
-								"copySource": {
-									"queryTimeout": null
-								}
-							}
-						]
-					}
-				},
-				"folder": {
-					"name": "CloudSalesData"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Cloudsales_tables')]",
-				"[concat(variables('factoryId'), '/datasets/Cloud_sales_tables_destination')]"
 			]
 		}
 	]

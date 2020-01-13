@@ -7,6 +7,18 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "Southridge-Data-Source-to-ADLS"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics1'"
+		},
 		"Cloud_sales_AzureDataLakeStorage_Linked_services_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'Cloud_sales_AzureDataLakeStorage_Linked_services'"
@@ -70,6 +82,15 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"AzureSynapseAnalytics1_connectionString": {
+						"value": "[parameters('AzureSynapseAnalytics1_connectionString')]"
+					},
 					"Cloud_sales_AzureDataLakeStorage_Linked_services_accountKey": {
 						"value": "[parameters('Cloud_sales_AzureDataLakeStorage_Linked_services_accountKey')]"
 					},
@@ -82,20 +103,8 @@
 					"Source_cloudstreaming_tables_connectionString": {
 						"value": "[parameters('Source_cloudstreaming_tables_connectionString')]"
 					},
-					"FileServer1_password": {
-						"value": "[parameters('FileServer1_password')]"
-					},
-					"VanArsdelLtd_linked_service_connectionString": {
-						"value": "[parameters('VanArsdelLtd_linked_service_connectionString')]"
-					},
 					"Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url": {
 						"value": "[parameters('Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url')]"
-					},
-					"FileServer1_properties_typeProperties_host": {
-						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
-					},
-					"FileServer1_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -114,6 +123,18 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"FileServer1_password": {
+						"value": "[parameters('FileServer1_password')]"
+					},
+					"VanArsdelLtd_linked_service_connectionString": {
+						"value": "[parameters('VanArsdelLtd_linked_service_connectionString')]"
+					},
+					"FileServer1_properties_typeProperties_host": {
+						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
+					},
+					"FileServer1_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
 					}
 				}
 			},
