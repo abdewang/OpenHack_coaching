@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_3q7",
+				"name": "Copy from cloudsales to reportingdb",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
