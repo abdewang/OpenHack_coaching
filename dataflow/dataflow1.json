@@ -9,7 +9,7 @@
 						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "Cloudsales"
 				},
 				{
 					"dataset": {
@@ -21,7 +21,7 @@
 			],
 			"sinks": [],
 			"transformations": [],
-			"script": "\n\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> source1\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> source2"
+			"script": "\n\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> Cloudsales\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> source2"
 		}
 	}
 }
