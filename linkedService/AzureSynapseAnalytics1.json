@@ -5,8 +5,8 @@
 		"annotations": [],
 		"type": "AzureSqlDW",
 		"typeProperties": {
-			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=reportingdw1.database.windows.net;initial catalog=reportingdb;user id=southridge",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNPVVRIUklER0UtREFUQS1TT1VSQ0UtVE8tQURMU18zNGNiNzAwNC1kNjAwLTRhZDctYWMwYi03YWVhNDRlMGExMDkiDQp9"
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=dnvdemoanalytics.sql.azuresynapse.net;initial catalog=TransportDW;user id=C",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDc0MkJGQ0M3LUY3RUMtNEYwRC04MTYzLTE5NTNDRkEzQTQ0Rl9mNDk3NGIxNy05NTE4LTRlMmEtODkzMi1lNWJkZjA2M2E5OWQiDQp9"
 		}
 	}
 }
