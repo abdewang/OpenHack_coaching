@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "transporttransformationdemo"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"value": ""
+		},
+		"Cloud_sales_AzureDataLakeStorage_Linked_services_accountKey": {
+			"value": ""
+		},
+		"Cloudsales_connection_connectionString": {
+			"value": ""
+		},
+		"FileServer1_password": {
+			"value": ""
+		},
+		"Movies_DataSource_connectionString": {
+			"value": ""
+		},
+		"Source_cloudstreaming_tables_connectionString": {
+			"value": ""
+		},
+		"VanArsdelLtd_linked_service_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://kmpocdatalake.dfs.core.windows.net/"
+		},
+		"Cloud_sales_AzureDataLakeStorage_Linked_services_properties_typeProperties_url": {
+			"value": "https://southridgedatalake.dfs.core.windows.net"
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"value": "C:\\Rentals"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"value": "openhackadmin"
+		}
+	}
+}
