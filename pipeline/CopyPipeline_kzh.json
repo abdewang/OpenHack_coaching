@@ -1,0 +1,164 @@
+{
+	"name": "CopyPipeline_kzh",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_demo",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "dummydata/AX/BetterCompany/"
+					},
+					{
+						"name": "Destination",
+						"value": ".Azure Data Lake Storage Gen2 file"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "249",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "249",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "usually modern interest show for this spring third. Glass research with hotel mind chance. Now eat trade born scientist instead design.",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "usually modern interest show for this spring third. Glass research with hotel mind chance. Now eat trade born scientist instead design.",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "I send while general role wall. Gas there beyond expect. Human per black movement vote simple Mr.\nEi",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "I send while general role wall. Gas there beyond expect. Human per black movement vote simple Mr.\nEi",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Goal be whom down ahead. International only part only.\nOnce ",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Goal be whom down ahead. International only part only.\nOnce ",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Somebody guy official provide stuff new realize. Relate fina",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Somebody guy official provide stuff new realize. Relate fina",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "News part ",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "News part ",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Gir",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Gir",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Real",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Real",
+									"type": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_kzh",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_kzh",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-06-11T19:30:21Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,53 @@
+{
+	"name": "DestinationDataset_q3g",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CustomerID",
+				"type": "uniqueidentifier",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "LastName",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "PhoneNumber",
+				"type": "char",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "CreatedDate",
+				"type": "date",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "UpdatedDate",
+				"type": "date",
+				"precision": 10,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CloudSalesCustomers"
+		}
+	}
+}

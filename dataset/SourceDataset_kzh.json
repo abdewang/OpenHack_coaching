@@ -1,0 +1,58 @@
+{
+	"name": "SourceDataset_kzh",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "AX/BetterCompany",
+				"fileSystem": "dummydata"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "249",
+				"type": "String"
+			},
+			{
+				"name": "usually modern interest show for this spring third. Glass research with hotel mind chance. Now eat trade born scientist instead design.",
+				"type": "String"
+			},
+			{
+				"name": "I send while general role wall. Gas there beyond expect. Human per black movement vote simple Mr.\nEi",
+				"type": "String"
+			},
+			{
+				"name": "Goal be whom down ahead. International only part only.\nOnce ",
+				"type": "String"
+			},
+			{
+				"name": "Somebody guy official provide stuff new realize. Relate fina",
+				"type": "String"
+			},
+			{
+				"name": "News part ",
+				"type": "String"
+			},
+			{
+				"name": "Gir",
+				"type": "String"
+			},
+			{
+				"name": "Real",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

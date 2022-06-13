@@ -1,0 +1,27 @@
+{
+	"name": "SourceDataset_3q7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Cloud_sales_AzureDataLakeStorage_Linked_services",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Cloudsales to DW"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "dboAddresses.txt",
+				"folderPath": "dbo",
+				"fileSystem": "cloudsales"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

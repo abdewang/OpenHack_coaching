@@ -1,0 +1,9 @@
+{
+	"name": "transporttransformationdemo",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "25313b45-9c71-4227-980d-ac73a9cad14d",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}
