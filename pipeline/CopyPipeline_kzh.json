@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_kzh",
+				"name": "Copy_demo",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
