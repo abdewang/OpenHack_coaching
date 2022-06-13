@@ -1056,7 +1056,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy_kzh",
+						"name": "Copy_demo",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -1216,7 +1216,8 @@
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2022-06-11T19:30:21Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SourceDataset_kzh')]"
